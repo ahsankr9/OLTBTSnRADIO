@@ -244,6 +244,8 @@
         select option { color: #1e1b4b; font-weight: 500; }
         .section-chip { display: inline-flex; align-items: center; gap: 5px; font-family: 'Orbitron', monospace; font-size: 0.62em; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #7c3aed; background: #ede9fe; border-radius: 20px; padding: 4px 12px; margin-bottom: 9px; margin-top: 5px; }
 
+
+
         /* ── BUTTONS ── */
         .btn-row { display: flex; gap: 10px; margin-top: 14px; }
         .btn { padding: 9px 18px; border: none; border-radius: 9px; font-family: 'Rajdhani', sans-serif; font-size: 0.92em; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: all 0.2s; }
@@ -693,7 +695,7 @@
                     </div>
                     <div class="input-row col-2">
                         <div class="field"><label for="profileId">Line Profile ID</label><input type="text" id="profileId" placeholder="e.g., 10"></div>
-                        <div class="field"><label for="gemMap">Gem Map</label><input type="number" id="gemMap" min="1" max="8" value="1"></div>
+                        <div class="field" id="gemMapGroup"><label for="gemMap">Gem Map</label><input type="number" id="gemMap" min="1" max="8" value="1"></div>
                     </div>
                     <div class="section-chip"><i class="material-icons" style="font-size:0.95em">tag</i> VLAN IDs (up to 4)</div>
                     <div class="input-row col-2">
@@ -1222,9 +1224,65 @@ system\configure# pon on 1 1</code>
         function copyOnuScript(){const text=document.getElementById('output-script').innerText,btn=document.getElementById('copy-btn'),ct=btn.querySelector('.copy-text');navigator.clipboard.writeText(text).then(()=>{btn.classList.add('copied');ct.textContent='Copied!';showToast('Script copied to clipboard!');setTimeout(()=>{btn.classList.remove('copied');ct.textContent='Copy Script';},2000);}).catch(()=>showToast('Copy failed','error'));}
 
         // ════ LINE PROFILE ════
-        function generateLineProfile(){const olt=document.getElementById("oltName").value,profileId=document.getElementById("profileId").value.trim()||"10",vlans=['lp-vlan1','lp-vlan2','lp-vlan3','lp-vlan4'].map(id=>document.getElementById(id).value.trim()).filter(v=>v!=='');let script="";if(olt==="vsol"){let sp='';vlans.forEach((v,i)=>sp+=`service-port ${i+1} gemport 1 uservlan ${v} vlan ${v}\n`);script=`profile line id ${profileId}\ntcont 1 name tcont_1 dba MAX_BW\ngemport 1 tcont 1\nservice 1 gemport 1 vlan ${vlans.join(",")}\n${sp}commit\nexit`;}else if(olt==="cdata16"){let gm='';vlans.forEach((v,i)=>gm+=`gem mapping 1 ${i+1} vlan ${v}\n`);script=`ont-lineprofile gpon profile-id ${profileId}\ntcont 1 dba-profile-id 30\ngem add 1 tcont 1\n${gm}mapping-mode vlan\ncommit\nexit`;}else if(olt==="cdata8"){let gm='';vlans.forEach((v,i)=>gm+=`gem mapping 1 ${i+1} vlan ${v}\n`);script=`ont-lineprofile profile-id ${profileId}\ntcont 1 dba-profile-id 30\ngem add 1 tcont 1\n${gm}mapping-mode vlan\ncommit\nexit`;}document.getElementById("lp-output").value=script;}
 
-        function clearLPFields(){['profileId','lp-vlan1','lp-vlan2','lp-vlan3','lp-vlan4'].forEach(id=>document.getElementById(id).value='');document.getElementById("gemMap").value="1";document.getElementById("lp-output").value="";}
+        function generateLineProfile() {
+            const olt = document.getElementById('oltName').value;
+            const profileId = document.getElementById('profileId').value.trim() || '10';
+            const gemMap = Math.min(Math.max(parseInt(document.getElementById('gemMap').value || '1', 10), 1), 8);
+
+            const vlans = ['lp-vlan1','lp-vlan2','lp-vlan3','lp-vlan4']
+                .map(id => document.getElementById(id).value.trim())
+                .filter(v => v !== '');
+
+            let script = '';
+
+            if (olt === 'vsol') {
+                // VSOL / ATOP
+                const vlanString = vlans.join(',');
+                let servicePorts = '';
+                vlans.forEach((v, i) => {
+                    servicePorts += `service-port ${i + 1} gemport 1 uservlan ${v} vlan ${v}\n`;
+                });
+                script = `profile line id ${profileId}\ntcont 1 name tcont_1 dba MAX_BW\ngemport 1 tcont 1\nservice 1 gemport 1 vlan ${vlanString}\n${servicePorts}commit\nexit`;
+
+            } else if (olt === 'cdata16') {
+                // CDATA GPON 16-PON: gem mapping index starts from gemMap, increments per VLAN
+                let gemMappings = '';
+                vlans.forEach((vlan, idx) => {
+                    gemMappings += `gem mapping 1 ${gemMap + idx} vlan ${vlan}\n`;
+                });
+                script = `ont-lineprofile gpon profile-id ${profileId}\n` +
+                         `tcont 1 dba-profile-id 30\n` +
+                         `gem add 1 tcont 1\n` +
+                         `${gemMappings}` +
+                         `mapping-mode vlan\n` +
+                         `commit\n` +
+                         `exit`;
+
+            } else if (olt === 'cdata8') {
+                // CDATA GPON 8-PON: gem mapping index starts from gemMap, increments per VLAN
+                let gemMappings = '';
+                vlans.forEach((vlan, idx) => {
+                    gemMappings += `gem mapping 1 ${gemMap + idx} vlan ${vlan}\n`;
+                });
+                script = `ont-lineprofile profile-id ${profileId}\n` +
+                         `tcont 1 dba-profile-id 30\n` +
+                         `gem add 1 tcont 1\n` +
+                         `${gemMappings}` +
+                         `mapping-mode vlan\n` +
+                         `commit\n` +
+                         `exit`;
+            }
+
+            document.getElementById('lp-output').value = script;
+        }
+
+        function clearLPFields() {
+            ['profileId','lp-vlan1','lp-vlan2','lp-vlan3','lp-vlan4'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('gemMap').value = '1';
+            document.getElementById('lp-output').value = '';
+            document.getElementById('oltName').value = 'cdata16';
+        }
 
         function copyLPScript(){const output=document.getElementById("lp-output");if(!output.value.trim()){showToast("No script to copy!","error");return;}const btn=document.getElementById('lp-copy-btn'),ct=document.getElementById('lp-copy-text');navigator.clipboard.writeText(output.value).then(()=>{btn.classList.add('copied');ct.textContent='Copied!';showToast('Script copied to clipboard!');setTimeout(()=>{btn.classList.remove('copied');ct.textContent='Copy Script';},2000);}).catch(()=>showToast('Copy failed','error'));}
 
