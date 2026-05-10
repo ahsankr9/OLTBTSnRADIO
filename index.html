@@ -702,22 +702,22 @@
                                 <div class="docs-sub-group">
                                     <div class="docs-sub-group-header" onclick="toggleSubGroup(this)"><span>CDATA GPON 16</span><span class="sub-arrow2">▶</span></div>
                                     <div class="docs-sub-group-items">
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_cdata_troubleshoot', this)">🔧 Troubleshoot</button>
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_cdata_installation', this)">⚙️ Installation</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_cdata_troubleshoot', this)"> -Troubleshoot</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_cdata_installation', this)"> -Installation</button>
                                     </div>
                                 </div>
                                 <div class="docs-sub-group">
                                     <div class="docs-sub-group-header" onclick="toggleSubGroup(this)"><span>CDATA GPON 8</span><span class="sub-arrow2">▶</span></div>
                                     <div class="docs-sub-group-items">
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_gpon8_troubleshoot', this)">🔧 Troubleshoot</button>
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_gpon8_installation', this)">⚙️ Installation</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_gpon8_troubleshoot', this)"> -Troubleshoot</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_gpon8_installation', this)"> -Installation</button>
                                     </div>
                                 </div>
                                 <div class="docs-sub-group">
                                     <div class="docs-sub-group-header" onclick="toggleSubGroup(this)"><span>VSOL / ATOP</span><span class="sub-arrow2">▶</span></div>
                                     <div class="docs-sub-group-items">
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_vsol_troubleshoot', this)">🔧 Troubleshoot</button>
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_vsol_installation', this)">⚙️ Installation</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_vsol_troubleshoot', this)"> -Troubleshoot</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_vsol_installation', this)"> -Installation</button>
                                     </div>
                                 </div>
                             </div>
@@ -835,7 +835,7 @@
                                 <option value="100">100 / 100 Mbps</option>
                                 <option value="160">160 / 160 Mbps</option>
                                 <option value="210">210 / 210 Mbps</option>
-                                <option value="255">255 / 255 Mbps</option>
+                                <option value="256">256 / 256 Mbps</option>
                             </select>
                         </div>
                     </div>
@@ -979,8 +979,9 @@
                     <div class="docs-card">
                         <div class="docs-card-header"><h2 class="docs-card-title">CDATA GPON Troubleshooting</h2></div>
                         <div class="docs-search-wrapper"><span class="docs-search-icon">🔍</span><input type="text" class="docs-search-input" id="s_cdata_ts" placeholder="Search commands..."></div>
-                        <span class="docs-cmd-label">ONU Discover check:</span><code class="docs-code">(config-interface-gpon-0/0)# show ont autofind all
-(config-interface-gpon-0/0)# show ont autofind 1 all</code>
+                        <span class="docs-cmd-label">ONU Discover check:</span><code class="docs-code">(config)# show ont autofind all brief sn-format string 
+(config)# show ont autofind all
+(config-interface-gpon-0/0)# show ont autofind 1 all </code>
                         <span class="docs-cmd-label">ONU configuration Check:</span><code class="docs-code">(config-interface-gpon-0/0)# show ont info 1 1
 (config)# show current-config section ont 0/0 2 5</code>
                         <span class="docs-cmd-label">ONU Laser check:</span><code class="docs-code">(config-interface-gpon-0/0)# show ont optical-info 1 1</code>
@@ -1361,7 +1362,8 @@ system\configure# pon on 1 1</code>
                 { name:"Diamond Disposable & Plastic Ind.", swip:"10.67.3.4:33", apip:"10.200.144.218", cpip:"10.200.144.219", linktype:"P2P", radioname:"PMP Eforce100 Dish", ssid:"3112022", chwidth:"20 MHz", freq:"5340/5355", key:"diamond12345", vlan:"N/A" },
                 { name:"PRAN DAIRY LTD: Keranigonj", swip:"10.67.3.3:15", apip:"10.200.155.154", cpip:"10.200.155.155", linktype:"P2P", radioname:"PMP Eforce100 Dish", ssid:"5072022", chwidth:"20 MHz", freq:"5215/5785", key:"pran12345", vlan:"N/A" },
                 { name:"BPDB: Pre-Paid Metering Main Link", swip:"10.67.3.4:41", apip:"10.200.144.154", cpip:"10.200.144.155", linktype:"P2P", radioname:"PMP Eforce100 Dish", ssid:"link321", chwidth:"20 MHz", freq:"5350/5370", key:"tssa012419", vlan:"N/A" },
-                { name:"United Finance: HO Sec Radio", swip:"10.67.3.4:45", apip:"10.200.144.106", cpip:"10.200.144.107", linktype:"P2P", radioname:"ePMP Eforce300", ssid:"UFL_HO_Sec", chwidth:"20 MHz", freq:"5730/5750", key:"UFL@link321", vlan:"N/A" }
+                { name:"United Finance: HO Sec Radio", swip:"10.67.3.4:45", apip:"10.200.144.106", cpip:"10.200.144.107", linktype:"P2P", radioname:"ePMP Eforce300", ssid:"UFL_HO_Sec", chwidth:"20 MHz", freq:"5730/5750", key:"UFL@link321", vlan:"N/A" },
+		{ name:"MBL Abdullahpur Branch", swip:"10.67.3.4:45", apip:"10.200.155.170", cpip:"10.200.155.171", linktype:"P2P", radioname:"PowerBeam M5 400", ssid:"151122", chwidth:"10 MHz", freq:"5730/5750", key:"N/A", vlan:"N/A" }	
             ]
         },
         joypara: {
