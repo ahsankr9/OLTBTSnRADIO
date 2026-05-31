@@ -529,7 +529,11 @@
         .radio-search { width: 100%; background: var(--radio-sidebar); border: 1px solid rgba(26,127,203,0.2); border-radius: 8px; padding: 7px 12px; font-size: 12px; color: #1a3a5c; outline: none; transition: all 0.2s; font-family: 'Rajdhani', sans-serif; font-weight: 600; }
         .radio-search::placeholder { color: rgba(26,127,203,0.35); }
         .radio-search:focus { border-color: var(--radio-accent); box-shadow: 0 0 0 3px rgba(26,127,203,0.1); background: #fff; }
-        .radio-bts-tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 6px 6px; border-bottom: 1px solid var(--radio-border); background: #f0f7ff; flex-shrink: 0; }
+        .radio-bts-tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 6px 6px; border-bottom: 1px solid var(--radio-border); background: #f0f7ff; flex-shrink: 0; align-items: center; }
+        .firmware-btn { margin-left: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 4px 8px; border-radius: 8px; border: 1.5px solid rgba(16,185,129,0.35); background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(5,150,105,0.07)); color: #059669; cursor: pointer; transition: all 0.2s; text-decoration: none; flex-shrink: 0; }
+        .firmware-btn:hover { background: linear-gradient(135deg, rgba(16,185,129,0.25), rgba(5,150,105,0.15)); border-color: #059669; box-shadow: 0 2px 10px rgba(16,185,129,0.25); transform: translateY(-1px); }
+        .firmware-btn .fw-icon { font-size: 14px; line-height: 1; }
+        .firmware-btn .fw-label { font-size: 8px; font-weight: 800; letter-spacing: 1px; font-family: 'Orbitron', monospace; text-transform: uppercase; color: #059669; line-height: 1; }
         .radio-bts-tab { padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(26,127,203,0.2); background: #fff; color: #4a7a9b; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; cursor: pointer; transition: all 0.18s; font-family: 'Rajdhani', sans-serif; }
         .radio-bts-tab:hover { border-color: var(--radio-accent); color: var(--radio-accent); }
         .radio-bts-tab.active { background: var(--radio-accent); color: #fff; border-color: var(--radio-accent); }
@@ -1033,10 +1037,8 @@ font-weight: 700; font-weight: 600; color: #1a3a5c; font-size: 13px; }
                         <span class="docs-cmd-label">ONU Discover check:</span><code class="docs-code">(config)# show ont autofind all brief sn-format string 
 (config)# show ont autofind all
 (config-interface-gpon-0/0)# show ont autofind 1 all </code>
-<span class="docs-cmd-label">ONU Online/Offline Time:</span><code class="docs-code">(config-interface-gpon-0/0)# show ont register-statistics all</code>
-                        <span class="docs-cmd-label">ONU configuration Check:</span><code class="docs-code">(config)# show current-config section ont 0/0 2 5
-(config-interface-gpon-0/0)# show ont info 1 1 
-(config-interface-gpon-0/0)# show ont run-info 1 all</code>
+                        <span class="docs-cmd-label">ONU configuration Check:</span><code class="docs-code">(config-interface-gpon-0/0)# show ont info 1 1
+(config)# show current-config section ont 0/0 2 5</code>
                         <span class="docs-cmd-label">ONU Laser check:</span><code class="docs-code">(config-interface-gpon-0/0)# show ont optical-info 1 1</code>
                         <span class="docs-cmd-label">ONU Delete:</span><code class="docs-code">(config-interface-gpon-0/0)# ont delete 1 28</code>
                         <span class="docs-cmd-label">MAC from ONU port:</span><code class="docs-code">(config-interface-gpon-0/0)# show ont port learned-mac 1 1 eth 4</code>
@@ -1099,17 +1101,14 @@ exit</code>
                         <div class="docs-card-header"><h2 class="docs-card-title">VSOL &amp; ATOP Troubleshooting</h2></div>
                         <div class="docs-search-wrapper"><span class="docs-search-icon">🔍</span><input type="text" class="docs-search-input" id="s_vsol_ts" placeholder="Search commands..."></div>
                         <span class="docs-cmd-label">ONU Discover Check:</span><code class="docs-code">(config-pon-0/1)# show onu auto-find</code>
-			<span class="docs-cmd-label">ONU Online Time:</span><code class="docs-code">(config-pon-0/1)# show onu time-stamp</code>
                         <span class="docs-cmd-label">ONU Config Check:</span><code class="docs-code">(config-pon-0/1)# show running-config onu 10</code>
-                        <span class="docs-cmd-label">Free ONU ID check:</span><code class="docs-code">(config-pon-0/1)# show onu state
-(config)# show onu state 10</code>
+                        <span class="docs-cmd-label">Free ONU ID check:</span><code class="docs-code">(config-pon-0/1)# show onu state</code>
                         <span class="docs-cmd-label">ONU Reboot:</span><code class="docs-code">(config-pon-0/2)# onu 26 reboot</code>
                         <span class="docs-cmd-label">ONU Port learnt mac:</span><code class="docs-code">(config)# show mac address-table pon 1 2</code>
                         <span class="docs-cmd-label">ONU Laser check:</span><code class="docs-code">(config-pon-0/1)# show onu 2 optical_info</code>
-			<span class="docs-cmd-label">All ONU Laser check:</span><code class="docs-code">(config-pon-0/3)# show pon onu all rx-power</code>
-			<span class="docs-cmd-label">PON TX Power check/Temperature:</span><code class="docs-code">(config-pon-0/1)# show pon optical transceiver</code>
                         <span class="docs-cmd-label">Profile Line check:</span><code class="docs-code">(config)# show profile line id 5</code>
                         <span class="docs-cmd-label">ONU Eth port status check:</span><code class="docs-code">(config-pon-0/3)# show onu 24 eth 1</code>
+                        <span class="docs-cmd-label">All ONU Laser check:</span><code class="docs-code">(config-pon-0/3)# show pon onu all rx-power</code>
                         <span class="docs-cmd-label">Rate-limit Omit:</span><code class="docs-code">(config-pon-0/3)#no ont port car 15 19 eth 1 inbound
 (config-pon-0/3)#no ont port car 15 19 eth 1 outbound</code>
                         <span class="docs-cmd-label">To Save:</span><code class="docs-code">(config)# write</code>
@@ -1123,7 +1122,7 @@ exit</code>
 (config)#mac address-table static vlan 59 0002-17dc-d81b interface gigabitethernet 0/6</code>
                         <span class="docs-cmd-label">Pon Shut / No Shut:</span><code class="docs-code">(config-pon-0/1)# shutdown
 (config-pon-0/1)# no shutdown</code>
-                        
+                        <span class="docs-cmd-label">PON TX Power check/Temperature:</span><code class="docs-code">(config-pon-0/1)# show pon optical transceiver</code>
                         <span class="docs-cmd-label">PON / Uplink port traffic check:</span><code class="docs-code">(config-if-ge0/5)# show interface</code>
                         <span class="docs-cmd-label">ONU Distance check from OLT:</span><code class="docs-code">(config-pon-0/3)# show onu 25 distance</code>
                     </div>
@@ -1311,7 +1310,9 @@ system\configure# pon on 1 1</code>
                 <div class="radio-search-wrap">
                     <input class="radio-search" type="text" id="radioClientSearch" placeholder="🔍  Search ALL BTS radios..." oninput="radioGlobalSearch()">
                 </div>
-                <div class="radio-bts-tabs" id="radioBtsTabs"></div>
+                <div class="radio-bts-tabs" id="radioBtsTabs">
+
+                </div>
                 <div class="radio-client-list" id="radioClientList"></div>
             </div>
             <div class="radio-detail-panel">
@@ -1387,48 +1388,53 @@ system\configure# pon on 1 1</code>
     const radioData = {
         malek: {
             name: "Malek BTS",
+            firmware: "https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD6XFIBGj5Hl31IBlmCV0qvn",
             clients: [
-                { name:"IFIC Bank Limited: DC- 3rd Link", swip:"123.200.15.3: 26", apip:"10.200.149.114", cpip:"10.200.149.115", linktype:"P2P", radioname:"NANO BEAM-M5-400", ssid:"1092018", chwidth:"20 MHz", freq:"5805/5850", key:"N/A", vlan:"N/A" }
+                { name:"IFIC Bank Limited: DC- 3rd Link", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD6uqg8i7E2dxqak1EtpFWjs", swip:"123.200.15.3: 26", apip:"10.200.149.114", cpip:"10.200.149.115", linktype:"P2P", radioname:"NANO BEAM-M5-400", ssid:"1092018", chwidth:"20 MHz", freq:"5805/5850", key:"N/A", vlan:"N/A" }
             ]
         },
         jatrabari: {
             name: "Jatrabari BTS",
+            firmware: "https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD7CpM8bYU3syrzGNIAHt83P",
             clients: [
-                { name:"Midland Bank Ltd: Aganagar", swip:"Huawei SW:GE0/0/22", apip:"172.16.17.50", cpip:"172.16.17.51", linktype:"P2M", radioname:"NANO BEAM-M5-400", ssid:"midland", chwidth:"25 MHz", freq:"5870/55860", key:"midland123", vlan:"15111" },
-                { name:"Mutual Trust Bank: Keranigonj", swip:"Huawei SW:GE0/0/22", apip:"172.16.17.50", cpip:"172.16.17.53", linktype:"P2M", radioname:"NANO BEAM-M5-300", ssid:"midland", chwidth:"25 MHz", freq:"5870/55860", key:"midland123", vlan:"15100" },
-                { name:"AB Bank Ltd: Jinjira Branch", swip:"Huawei SW:GE0/0/22", apip:"172.16.17.50", cpip:"172.16.17.52", linktype:"P2M", radioname:"NANO BEAM-M5-400", ssid:"midland", chwidth:"25 MHz", freq:"5870/55860", key:"midland123", vlan:"15100" },
-                { name:"Janata Bank: Gandaria Corp Branch", swip:"Huawei SW:GE0/0/11", apip:"172.16.21.130", cpip:"172.16.21.133", linktype:"P2P", radioname:"ePMP Eforce100", ssid:"6092020", chwidth:"20 MHz", freq:"5760", key:"epmp-keranigonj", vlan:"N/A" },
-                { name:"Renata Ltd: Burigonga Depot", swip:"Huawei SW:GE0/0/20", apip:"10.200.140.106", cpip:"10.200.140.107", linktype:"P2M", radioname:"NANO AIRFIBER 5XHD", ssid:"mblabdullahpur", chwidth:"20 MHz", freq:"5730", key:"121224@L3", vlan:"N/A" },
-                { name:"United Com. Bank: Dania Branch", swip:"Huawei SW:GE0/0/21", apip:"10.200.140.98", cpip:"10.200.140.100", linktype:"P2M", radioname:"NANO BEAM-M5-400", ssid:"icmh567", chwidth:"20 MHz", freq:"5775/5785", key:"N/A", vlan:"600" },
-                { name:"Dutch-Bangla Bank: Matuail Branch", swip:"Huawei SW:GE0/0/23", apip:"172.16.21.98", cpip:"172.16.21.100", linktype:"P2P", radioname:"ePMP Eforce100", ssid:"epmpjatrabari", chwidth:"20 MHz", freq:"5350/5840", key:"epmp.jatrabari", vlan:"N/A" },
-                { name:"B.A.R & ASSOCIATES LTD", swip:"Huawei SW:GE0/0/28", apip:"10.200.140.194", cpip:"10.200.140.195", linktype:"P2P", radioname:"ePMP Cambium Eforce300 With Dish", ssid:"BARassociate26", chwidth:"40 MHz", freq:"5350", key:"BAR@link3", vlan:"N/A" }
+                { name:"Midland Bank Ltd: Aganagar", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD7Ow3Px7t60cWB0FTHH4yz4", swip:"Huawei SW:GE0/0/22", apip:"172.16.17.50", cpip:"172.16.17.51", linktype:"P2M", radioname:"NANO BEAM-M5-400", ssid:"midland", chwidth:"25 MHz", freq:"5870/55860", key:"midland123", vlan:"15111" },
+                { name:"Mutual Trust Bank: Keranigonj", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD4XAYyevUWUDeYLqn3lwEpH", swip:"Huawei SW:GE0/0/22", apip:"172.16.17.50", cpip:"172.16.17.53", linktype:"P2M", radioname:"NANO BEAM-M5-300", ssid:"midland", chwidth:"25 MHz", freq:"5870/55860", key:"midland123", vlan:"15100" },
+                { name:"AB Bank Ltd: Jinjira Branch", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD5zGIGOXDZ0G0YT5tJAGyR5", swip:"Huawei SW:GE0/0/22", apip:"172.16.17.50", cpip:"172.16.17.52", linktype:"P2M", radioname:"NANO BEAM-M5-400", ssid:"midland", chwidth:"25 MHz", freq:"5870/55860", key:"midland123", vlan:"15100" },
+                { name:"Janata Bank: Gandaria Corp Branch", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD6xUtYllsnDBzO1wEhctujp", swip:"Huawei SW:GE0/0/11", apip:"172.16.21.130", cpip:"172.16.21.133", linktype:"P2P", radioname:"ePMP Eforce100", ssid:"6092020", chwidth:"20 MHz", freq:"5760", key:"epmp-keranigonj", vlan:"N/A" },
+                { name:"Renata Ltd: Burigonga Depot", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD3FFAUmZoPPzm1eo0qebUPK", swip:"Huawei SW:GE0/0/20", apip:"10.200.140.106", cpip:"10.200.140.107", linktype:"P2M", radioname:"NANO AIRFIBER 5XHD", ssid:"mblabdullahpur", chwidth:"20 MHz", freq:"5730", key:"121224@L3", vlan:"N/A" },
+                { name:"United Com. Bank: Dania Branch", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD2jJohEbCzdubaBXYVL774J", swip:"Huawei SW:GE0/0/21", apip:"10.200.140.98", cpip:"10.200.140.100", linktype:"P2M", radioname:"NANO BEAM-M5-400", ssid:"icmh567", chwidth:"20 MHz", freq:"5775/5785", key:"N/A", vlan:"600" },
+                { name:"Dutch-Bangla Bank: Matuail Branch", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD2dnKvQZCbv0gQbYDwkv1sn", swip:"Huawei SW:GE0/0/23", apip:"172.16.21.98", cpip:"172.16.21.100", linktype:"P2P", radioname:"ePMP Eforce100", ssid:"epmpjatrabari", chwidth:"20 MHz", freq:"5350/5840", key:"epmp.jatrabari", vlan:"N/A" },
+                { name:"B.A.R & ASSOCIATES LTD", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD6TpNrGgEpi2LmQVw4hehuL", swip:"Huawei SW:GE0/0/28", apip:"10.200.140.194", cpip:"10.200.140.195", linktype:"P2P", radioname:"ePMP Cambium Eforce300 With Dish", ssid:"BARassociate26", chwidth:"40 MHz", freq:"5350", key:"BAR@link3", vlan:"N/A" }
             ]
         },
         imamganj: {
             name: "Imamganj BTS",
+            firmware: "https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD64zQrqgNmMM1f11NYCnYMa",
             clients: [
-                { name:"Shahjalal Islamic Bank: Keranigonj", swip:"10.66.61.2: 12", apip:"172.16.9.146", cpip:"172.16.9.149", linktype:"P2M", radioname:"NANO BEAM-M5-400", ssid:"imam", chwidth:"20 MHz", freq:"5120/5350", key:"N/A", vlan:"1010" },
-                { name:"DBBL: Rajabari Bazar FT", swip:"10.66.61.2: 12", apip:"172.16.9.146", cpip:"172.16.9.154", linktype:"P2M", radioname:"NANO BEAM-M5-400", ssid:"imam", chwidth:"20 MHz", freq:"5350/5360", key:"N/A", vlan:"1013" }
+                { name:"Shahjalal Islamic Bank: Keranigonj", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD49NDbiwV3eev41YlJBS5m3", swip:"10.66.61.2: 12", apip:"172.16.9.146", cpip:"172.16.9.149", linktype:"P2M", radioname:"NANO BEAM-M5-400", ssid:"imam", chwidth:"20 MHz", freq:"5120/5350", key:"N/A", vlan:"1010" },
+                { name:"DBBL: Rajabari Bazar FT", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD7YMqo7RbXkGYXbep2cyxc7", swip:"10.66.61.2: 12", apip:"172.16.9.146", cpip:"172.16.9.154", linktype:"P2M", radioname:"NANO BEAM-M5-400", ssid:"imam", chwidth:"20 MHz", freq:"5350/5360", key:"N/A", vlan:"1013" }
             ]
         },
         concord: {
             name: "Concord BTS",
+            firmware: "https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD7WO39BN6nLeUJkExfjStVQ",
             clients: [
-                { name:"Diamond Disposable & Plastic Ind.", swip:"10.67.3.4: 33", apip:"10.200.144.218", cpip:"10.200.144.219", linktype:"P2P", radioname:"ePMP Eforce100", ssid:"3112022", chwidth:"20 MHz", freq:"5340/5355", key:"diamond12345", vlan:"N/A" },
-                { name:"BPDB: Pre-Paid Metering Main Link", swip:"10.67.3.4: 41", apip:"10.200.144.154", cpip:"10.200.144.155", linktype:"P2P", radioname:"ePMP Eforce100", ssid:"link321", chwidth:"20 MHz", freq:"5350/5370", key:"tssa012419", vlan:"N/A" },
-                { name:"United Finance: HO Sec Radio", swip:"10.67.3.4: 45", apip:"10.200.144.106", cpip:"10.200.144.107", linktype:"P2P", radioname:"ePMP Eforce300", ssid:"UFL_HO_Sec", chwidth:"20 MHz", freq:"5730/5750", key:"UFL@link321", vlan:"N/A" },
-		{ name:"MBL Abdullahpur Branch", swip:"100.64.168.90: 17", apip:"10.200.155.170", cpip:"10.200.155.171", linktype:"P2P", radioname:"PowerBeam M5 400", ssid:"151122", chwidth:"10 MHz", freq:"5730/5750", key:"N/A", vlan:"N/A" }	
+                { name:"Diamond Disposable & Plastic Ind.", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD7jwqbquHeiEbn2Az6fM4UD", swip:"10.67.3.4: 33", apip:"10.200.144.218", cpip:"10.200.144.219", linktype:"P2P", radioname:"ePMP Eforce100", ssid:"3112022", chwidth:"20 MHz", freq:"5340/5355", key:"diamond12345", vlan:"N/A" },
+                { name:"BPDB: Pre-Paid Metering Main Link", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD4fDcWWeccnjt7TCi4WISUQ", swip:"10.67.3.4: 41", apip:"10.200.144.154", cpip:"10.200.144.155", linktype:"P2P", radioname:"ePMP Eforce100", ssid:"link321", chwidth:"20 MHz", freq:"5350/5370", key:"tssa012419", vlan:"N/A" },
+                { name:"United Finance: HO Sec Radio", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD6e8dHDdTABSSBmu3BaBdrU", swip:"10.67.3.4: 45", apip:"10.200.144.106", cpip:"10.200.144.107", linktype:"P2P", radioname:"ePMP Eforce300", ssid:"UFL_HO_Sec", chwidth:"20 MHz", freq:"5730/5750", key:"UFL@link321", vlan:"N/A" },
+		{ name:"MBL Abdullahpur Branch", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD6A079mRxT5zH0aFAfXe5Rw", swip:"100.64.168.90: 17", apip:"10.200.155.170", cpip:"10.200.155.171", linktype:"P2P", radioname:"PowerBeam M5 400", ssid:"151122", chwidth:"10 MHz", freq:"5730/5750", key:"N/A", vlan:"N/A" }	
             ]
         },
         joypara: {
             name: "Joypara BTS",
+            firmware: "https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD7HoW7il2jCOyZyHiDMosMj",
             clients: [
-                { name:"Agrani Bank: Kolapara Branch", swip:"10.67.1.202: 0/4", apip:"10.200.134.74", cpip:"10.200.134.75", linktype:"P2P", radioname:"PowerBeam M5 400", ssid:"ABL", chwidth:"10 MHz", freq:"5500/5800 MHz", key:"ABL", vlan:"N/A" },
-                { name:"Bangladesh Krishi Bank: Hashara", swip:"10.59.1.30: 0/11", apip:"10.200.133.146", cpip:"10.200.133.147", linktype:"P2P", radioname:"Rocket 5AC Lite", ssid:"BKB/hasara", chwidth:"10 MHz", freq:"5340/5345 MHz", key:"hasara07", vlan:"N/A" },
-                { name:"National Bank: Bhaghyakul Branch", swip:"10.67.1.202: 0/41", apip:"10.200.226.34", cpip:"10.200.226.35", linktype:"P2P", radioname:"Rocket 5AC Lite", ssid:"21102024", chwidth:"20 MHz", freq:"5330/5350 MHz", key:"21102024", vlan:"N/A" },
-                { name:"National Bank: Baghrabazar Branch", swip:"10.67.1.202: 0/21", apip:"10.200.133.226", cpip:"10.200.133.227", linktype:"P2P", radioname:"PowerBeam M5 400", ssid:"ABC", chwidth:"10 MHz", freq:"5440/5835 MHz", key:"ABC", vlan:"N/A" },
-                { name:"Barrister Nazmul Huda's Residence", swip:"10.67.1.202: 0/37", apip:"10.200.230.58", cpip:"10.200.230.59", linktype:"P2P", radioname:"ePMP Eforce200", ssid:"BNHR EP", chwidth:"05 MHz", freq:"5760 MHz", key:"link3210", vlan:"N/A" },
-                { name:"Agrani Bank: Churain Bazar Branch", swip:"10.67.1.202: 0/30", apip:"10.200.230.98", cpip:"10.200.230.99", linktype:"P2P", radioname:"PowerBeam M5 400", ssid:"ablchurain", chwidth:"8 MHz", freq:"5780/5675 MHz", key:"ablchurain", vlan:"N/A" }
+                { name:"Agrani Bank: Kolapara Branch", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD73p3jzrLwLFGAQ5Ac6gCW3", swip:"10.67.1.202: 0/4", apip:"10.200.134.74", cpip:"10.200.134.75", linktype:"P2P", radioname:"PowerBeam M5 400", ssid:"ABL", chwidth:"10 MHz", freq:"5500/5800 MHz", key:"ABL", vlan:"N/A" },
+                { name:"Bangladesh Krishi Bank: Hashara", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD3IVRdPIGK83FqGapd7HMVg", swip:"10.59.1.30: 0/11", apip:"10.200.133.146", cpip:"10.200.133.147", linktype:"P2P", radioname:"Rocket 5AC Lite", ssid:"BKB/hasara", chwidth:"10 MHz", freq:"5340/5345 MHz", key:"hasara07", vlan:"N/A" },
+                { name:"National Bank: Bhaghyakul Branch", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD4n1lOsPTr6r4KJ0ywezquA", swip:"10.67.1.202: 0/41", apip:"10.200.226.34", cpip:"10.200.226.35", linktype:"P2P", radioname:"Rocket 5AC Lite", ssid:"21102024", chwidth:"20 MHz", freq:"5330/5350 MHz", key:"21102024", vlan:"N/A" },
+                { name:"National Bank: Baghrabazar Branch", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD3TTpRmMLCxufVtGcOo7WK8", swip:"10.67.1.202: 0/21", apip:"10.200.133.226", cpip:"10.200.133.227", linktype:"P2P", radioname:"PowerBeam M5 400", ssid:"ABC", chwidth:"10 MHz", freq:"5440/5835 MHz", key:"ABC", vlan:"N/A" },
+                { name:"Barrister Nazmul Huda's Residence", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD6h2cNZcNChoOZ6E6l3zbHA", swip:"10.67.1.202: 0/37", apip:"10.200.230.58", cpip:"10.200.230.59", linktype:"P2P", radioname:"ePMP Eforce200", ssid:"BNHR EP", chwidth:"05 MHz", freq:"5760 MHz", key:"link3210", vlan:"N/A" },
+                { name:"Agrani Bank: Churain Bazar Branch", firmware:"https://mobidrive.com/sharelink/f/2wMkEubZ693581TAahSuzD7jIJEr04hv1Y9s6IqV6iWn", swip:"10.67.1.202: 0/30", apip:"10.200.230.98", cpip:"10.200.230.99", linktype:"P2P", radioname:"PowerBeam M5 400", ssid:"ablchurain", chwidth:"8 MHz", freq:"5780/5675 MHz", key:"ablchurain", vlan:"N/A" }
             ]
         }
     };
@@ -1492,13 +1498,16 @@ system\configure# pon on 1 1</code>
         if (radioInited) return;
         radioInited = true;
         const tabs = document.getElementById('radioBtsTabs');
+        const firmwareBtn = tabs.querySelector('.firmware-btn');
         Object.entries(radioData).forEach(([id, bts]) => {
             const btn = document.createElement('button');
             btn.className = 'radio-bts-tab' + (id === 'malek' ? ' active' : '');
             btn.textContent = bts.name.replace(' BTS', '');
             btn.onclick = () => selectRadioBTS(id, btn);
-            tabs.appendChild(btn);
+            tabs.insertBefore(btn, firmwareBtn);
         });
+        // Set initial firmware link for malek
+        firmwareBtn.href = radioData['malek'].firmware;
         renderRadioClientPanel('malek');
     }
 
@@ -1507,6 +1516,9 @@ system\configure# pon on 1 1</code>
         btn.classList.add('active');
         currentRadioBTS = id;
         document.getElementById('radioClientSearch').value = '';
+        // Update firmware link for selected BTS
+        const fw = document.querySelector('.firmware-btn');
+        if (fw) fw.href = radioData[id].firmware || '#';
         renderRadioClientPanel(id);
         showRadioWelcome();
     }
@@ -1562,7 +1574,7 @@ system\configure# pon on 1 1</code>
     function selectRadioClient(el, btsId, idx) {
         document.querySelectorAll('.radio-client-card').forEach(c => c.classList.remove('active'));
         el.classList.add('active');
-        showRadioDetail(radioData[btsId].clients[idx], radioData[btsId].name);
+        showRadioDetail(radioData[btsId].clients[idx], radioData[btsId].name, radioData[btsId].firmware);
     }
 
     function showRadioWelcome() {
@@ -1579,9 +1591,13 @@ system\configure# pon on 1 1</code>
         return isIp ? `<span class="ip-val">${val}</span>` : val;
     }
 
-    function showRadioDetail(c, btsName) {
+    function showRadioDetail(c, btsName, firmwareUrl) {
         const lt = c.linktype.toLowerCase();
         const vlan = (c.vlan && c.vlan !== 'N/A') ? `<span class="vlan-chip">${c.vlan}</span>` : `<span class="na-val">N/A</span>`;
+        const fwLink = c.firmware || firmwareUrl;
+        const firmwareRow = fwLink ? `
+                    <div class="rdc-cell lbl-wide" style="color:var(--radio-accent);font-weight:600;">💾 Firmware</div>
+                    <div class="rdc-cell val-wide"><a href="${fwLink}" target="_blank" style="color:var(--radio-accent);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:4px;">📁 ${c.firmware ? c.name : btsName} Firmware &nbsp;›</a></div>` : '';
         document.getElementById('radioDetailBody').innerHTML = `
             <div class="radio-detail-card">
                 <div class="rdc-header">
@@ -1610,6 +1626,7 @@ system\configure# pon on 1 1</code>
                     <div class="rdc-cell val">${rv(c.key)}</div>
                     <div class="rdc-cell lbl">VLAN</div>
                     <div class="rdc-cell val">${vlan}</div>
+                    ${firmwareRow}
                 </div>
             </div>`;
     }
