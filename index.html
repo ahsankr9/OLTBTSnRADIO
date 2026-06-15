@@ -1823,7 +1823,7 @@ initRadio();
                 }
                 for (let i = 1; i <= onuPorts; i++) {
                     const v = vlanList[i-1];
-                    if (v) { const vsol_bw = bandwidth === 255 ? 261120 : bandwidth === 256 ? 262144 : bwKbps;
+                    if (v) { const vsol_bw = bandwidth === 255 ? 512000 : bandwidth === 256 ? 1024000 : bwKbps;
 script += `onu ${onuId} eth ${i} upstream-rate-limit cir ${vsol_bw} pir ${vsol_bw}\nonu ${onuId} eth ${i} downstream-rate-limit cir ${vsol_bw} pir ${vsol_bw}\n`; }
                 }
                 script += `exit\n`; break;
