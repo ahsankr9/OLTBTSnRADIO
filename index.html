@@ -11,13 +11,13 @@
 
     <style>
         :root {
-            --sb-bg: linear-gradient(175deg, #071e3d 0%, #0d2b5e 60%, #071e3d 100%);
-            --sb-border: rgba(59,130,246,0.2);
-            --sb-accent: #60a5fa;
-            --sb-accent2: #38bdf8;
-            --sb-text: #e0e7ff;
-            --sb-muted: rgba(147,197,253,0.4);
-            --sb-active-bg: rgba(96,165,250,0.15);
+            --sb-bg: linear-gradient(160deg, #12183f 0%, #0c0e28 60%, #0a0d24 100%);
+            --sb-border: rgba(0,212,255,0.22);
+            --sb-accent: #7dd3fc;
+            --sb-accent2: #00d4ff;
+            --sb-text: #eef8ff;
+            --sb-muted: rgba(125,211,252,0.45);
+            --sb-active-bg: linear-gradient(90deg, rgba(0,212,255,0.16) 0%, rgba(125,211,252,0.16) 100%);
 
             --body-bg: #f0f4ff;
             --body-mesh: radial-gradient(ellipse at 20% 0%, rgba(139,92,246,0.08) 0%, transparent 50%),
@@ -68,21 +68,23 @@
         .docs-sub-group { margin: 2px 0; }
         .docs-sub-group-header {
             font-family: 'Rajdhani', sans-serif;
-            font-size: 0.8em; font-weight: 700; letter-spacing: 0.8px;
-            color: rgba(153,246,228,0.85); padding: 6px 10px; cursor: pointer;
-            border-radius: 6px; display: flex; align-items: center;
-            justify-content: space-between; transition: background 0.2s, border-left-color 0.2s;
-            border-left: 2px solid transparent;
+            font-size: 0.78em; font-weight: 700; letter-spacing: 0.6px;
+            color: rgba(153,246,228,0.75); padding: 6px 10px 2px;
+            cursor: default; display: flex; align-items: center;
         }
-        .docs-sub-group-header:hover { background: rgba(0,255,157,0.07); border-left-color: rgba(0,255,157,0.3); }
-        .docs-sub-group-header.open { color: #fff; background: rgba(0,255,157,0.1); border-left-color: rgba(0,255,157,0.5); }
-        .sub-arrow2 { font-size: 0.75em; color: rgba(0,255,157,0.4); transition: transform 0.2s; }
-        .docs-sub-group-header.open .sub-arrow2 { transform: rotate(90deg); color: #00ff9d; }
-        .docs-sub-group-items { display: none; padding: 2px 0 4px 14px; flex-direction: column; gap: 2px; border-left: 1px solid rgba(0,255,157,0.1); margin-left: 10px; }
-        .docs-sub-group-items.open { display: flex; }
-        .docs-sub-btn-leaf { font-size: 0.76em !important; padding: 5px 10px !important; color: rgba(153,246,228,0.6) !important; }
-        .docs-sub-btn-leaf:hover { color: #fff !important; }
-        .docs-sub-btn-leaf.active { color: #00ff9d !important; }
+        .docs-sub-group-items {
+            display: flex; flex-direction: column; gap: 2px;
+            border-left: 1px solid rgba(0,255,157,0.1); margin-left: 10px;
+            padding: 0 0 4px 14px;
+        }
+        .docs-sub-btn-leaf {
+            font-family: 'Orbitron', monospace !important;
+            font-size: 0.68em !important; font-weight: 700 !important;
+            letter-spacing: 1.2px !important;
+            padding: 5px 10px !important; color: rgba(0,212,255,0.6) !important;
+        }
+        .docs-sub-btn-leaf:hover { color: #7dd3fc !important; }
+        .docs-sub-btn-leaf.active { color: #00d4ff !important; }
 
         /* ════ SIDEBAR ════ */
         .sidebar {
@@ -91,33 +93,36 @@
             display: flex; flex-direction: column;
             padding: 20px 14px;
             border-right: 1px solid var(--sb-border);
+            box-shadow: 4px 0 32px rgba(20,10,60,0.25), inset -1px 0 0 rgba(167,139,250,0.08);
             z-index: 100; position: relative;
             overflow: hidden; overflow-y: auto;
         }
         .sidebar::before {
             content: ''; position: absolute; top: -70px; left: -70px;
             width: 230px; height: 230px;
-            background: radial-gradient(circle, rgba(96,165,250,0.13) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(167,139,250,0.18) 0%, transparent 70%);
             pointer-events: none;
         }
         .sidebar::after {
             content: ''; position: absolute; bottom: 90px; right: -50px;
             width: 170px; height: 170px;
-            background: radial-gradient(circle, rgba(56,189,248,0.09) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(125,211,252,0.12) 0%, transparent 70%);
             pointer-events: none;
         }
 
         .sidebar-brand {
             text-align: center; padding-bottom: 18px; margin-bottom: 18px;
-            border-bottom: 1px solid rgba(96,165,250,0.15); flex-shrink: 0;
+            border-bottom: 1px solid rgba(167,139,250,0.2); flex-shrink: 0;
             animation: brandFadeIn 0.7s ease forwards;
         }
         @keyframes brandFadeIn { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
 
         .brand-title {
             font-family: 'Orbitron', monospace; font-size: 0.82em; font-weight: 900;
-            letter-spacing: 3px; color: #60a5fa;
-            text-shadow: 0 0 28px rgba(96,165,250,0.55); margin-top: 6px;
+            letter-spacing: 3px; margin-top: 6px;
+            background: linear-gradient(90deg, #7dd3fc 0%, #c4b5fd 55%, #a78bfa 100%);
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 18px rgba(125,211,252,0.35));
         }
         .brand-sub {
             font-family: 'Rajdhani', sans-serif; font-size: 0.75em;
@@ -126,7 +131,7 @@
 
         .nav-section-label {
             font-family: 'Orbitron', monospace; font-size: 0.6em; letter-spacing: 2.5px;
-            color: rgba(96,165,250,0.38); padding: 0 8px; margin-bottom: 8px;
+            color: rgba(167,139,250,0.42); padding: 0 8px; margin-bottom: 8px;
             text-transform: uppercase; flex-shrink: 0;
         }
         .nav-group { display: flex; flex-direction: column; gap: 7px; position: relative; }
@@ -156,24 +161,26 @@
         }
 
         .nav-btn-glow {
-            position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-            border-radius: 0 2px 2px 0;
-            background: linear-gradient(180deg, #60a5fa, #38bdf8);
+            position: absolute; left: 3px; top: 6px; bottom: 6px; width: 3px;
+            border-radius: 3px;
+            background: linear-gradient(180deg, #7dd3fc, #a78bfa);
+            box-shadow: 0 0 10px rgba(125,211,252,0.7);
             opacity: 0; transition: opacity 0.3s ease;
         }
         .nav-btn:hover {
-            background: rgba(96,165,250,0.1); color: #dbeafe;
-            border-color: rgba(96,165,250,0.22); transform: translateX(5px);
-            box-shadow: 0 2px 18px rgba(59,130,246,0.13);
+            background: rgba(125,211,252,0.12); color: #ede9fe;
+            border-color: rgba(125,211,252,0.28); transform: translateX(5px);
+            box-shadow: 0 2px 18px rgba(167,139,250,0.18);
         }
         .nav-btn.active {
-            background: var(--sb-active-bg); border-color: rgba(96,165,250,0.38);
-            color: #93c5fd; box-shadow: 0 2px 14px rgba(96,165,250,0.18); transform: translateX(0);
+            background: var(--sb-active-bg); border-color: rgba(167,139,250,0.42);
+            color: #c4b5fd; box-shadow: 0 2px 14px rgba(167,139,250,0.22), inset 0 0 0 1px rgba(196,181,253,0.12);
+            transform: translateX(0);
         }
         .nav-btn.active .nav-btn-glow { opacity: 1; }
         .nav-btn.active::after {
             content: ''; position: absolute; inset: 0; border-radius: 11px;
-            background: rgba(96,165,250,0.06);
+            background: rgba(167,139,250,0.08);
             animation: navActivePulse 2.4s ease-in-out infinite;
         }
         @keyframes navActivePulse { 0%,100%{opacity:0} 50%{opacity:1} }
@@ -184,12 +191,12 @@
             font-size: 1em; flex-shrink: 0;
             transition: transform 0.3s cubic-bezier(0.34,1.5,0.64,1), background 0.25s ease;
         }
-        .icon-v { background: rgba(59,130,246,0.15); color: #60a5fa; }
-        .icon-s { background: rgba(56,189,248,0.15); color: #38bdf8; }
+        .icon-v { background: rgba(56,189,248,0.18); color: #7dd3fc; }
+        .icon-s { background: rgba(56,189,248,0.15); color: #a78bfa; }
         .icon-g { background: rgba(0,255,157,0.12); color: #00ff9d; }
-        .icon-r { background: rgba(26,127,203,0.18); color: #38bdf8; }
+        .icon-r { background: rgba(26,127,203,0.18); color: #a78bfa; }
         .nav-btn:hover .nav-icon-wrap { transform: scale(1.15) rotate(-5deg); }
-        .nav-btn.active .icon-v { background: rgba(59,130,246,0.28); }
+        .nav-btn.active .icon-v { background: rgba(56,189,248,0.3); }
         .nav-btn.active .icon-s { background: rgba(56,189,248,0.28); }
         .nav-btn.active .icon-g { background: rgba(0,255,157,0.22); }
         .nav-btn.active .icon-r { background: rgba(26,127,203,0.3); }
@@ -197,9 +204,9 @@
         .nav-text .tab-name {
             font-family: 'Orbitron', monospace; font-size: 0.8em; font-weight: 900;
             letter-spacing: 1.8px; display: block; line-height: 1.25;
-            color: rgba(219,234,254,0.95); text-shadow: 0 0 12px rgba(96,165,250,0.3);
+            color: #7dd3fc; text-shadow: 0 0 12px rgba(0,212,255,0.35);
         }
-        .nav-btn.active .nav-text .tab-name { color: #dbeafe; text-shadow: 0 0 16px rgba(96,165,250,0.6); }
+        .nav-btn.active .nav-text .tab-name { color: #22e0ff; text-shadow: 0 0 16px rgba(0,212,255,0.6); }
         .nav-text .tab-desc {
             font-family: 'Exo 2', sans-serif; font-size: 0.72em; font-weight: 600;
             opacity: 0.55; display: block; margin-top: 2px; letter-spacing: 0.3px;
@@ -221,19 +228,19 @@
             opacity: 0; transform: translateX(-20px);
         }
         .nav-group-header:hover {
-            background: rgba(96,165,250,0.1); color: #dbeafe;
-            border-color: rgba(96,165,250,0.22); transform: translateX(5px);
+            background: rgba(0,212,255,0.12); color: #e0f7ff;
+            border-color: rgba(0,212,255,0.28); transform: translateX(5px);
         }
         .nav-group-header.open {
-            background: rgba(96,165,250,0.12); color: #93c5fd;
-            border-color: rgba(96,165,250,0.3); transform: translateX(0);
+            background: rgba(0,212,255,0.16); color: #7dd3fc;
+            border-color: rgba(0,212,255,0.35); transform: translateX(0);
             border-radius: 11px 11px 6px 6px;
         }
         .nav-group-arrow {
-            margin-left: auto; font-size: 0.65em; color: rgba(96,165,250,0.45);
+            margin-left: auto; font-size: 0.65em; color: rgba(125,211,252,0.5);
             transition: transform 0.3s cubic-bezier(0.34,1.2,0.64,1), color 0.25s ease;
         }
-        .nav-group-header.open .nav-group-arrow { transform: rotate(180deg); color: #60a5fa; }
+        .nav-group-header.open .nav-group-arrow { transform: rotate(180deg); color: #7dd3fc; }
         .nav-group-header .nav-icon-wrap {
             transition: transform 0.3s cubic-bezier(0.34,1.5,0.64,1), background 0.25s ease;
         }
@@ -242,8 +249,8 @@
         .nav-group-children {
             display: none; flex-direction: column; gap: 3px;
             padding: 4px 6px 8px 6px;
-            background: rgba(96,165,250,0.05);
-            border: 1px solid rgba(96,165,250,0.15);
+            background: rgba(167,139,250,0.07);
+            border: 1px solid rgba(167,139,250,0.2);
             border-top: none;
             border-radius: 0 0 11px 11px;
             margin-bottom: 4px;
@@ -259,16 +266,16 @@
                         color 0.22s ease, transform 0.28s cubic-bezier(0.34,1.3,0.64,1);
         }
         .nav-child-btn:hover {
-            background: rgba(96,165,250,0.1); color: #dbeafe;
-            border-color: rgba(96,165,250,0.2); transform: translateX(4px);
+            background: rgba(125,211,252,0.12); color: #ede9fe;
+            border-color: rgba(125,211,252,0.25); transform: translateX(4px);
         }
         .nav-child-btn.active {
-            background: rgba(96,165,250,0.18); color: #93c5fd;
-            border-color: rgba(96,165,250,0.35);
+            background: rgba(167,139,250,0.22); color: #c4b5fd;
+            border-color: rgba(167,139,250,0.4);
         }
         .nav-child-btn.active::before {
             content: ''; position: absolute; left: 0; top: 3px; bottom: 3px;
-            width: 2px; background: #60a5fa; border-radius: 0 2px 2px 0;
+            width: 2px; background: #7dd3fc; border-radius: 0 2px 2px 0;
         }
         .nav-child-icon {
             width: 24px; height: 24px; border-radius: 6px;
@@ -315,7 +322,7 @@
         .docs-sub-btn.active { background: rgba(0,255,157,0.12); color: #00ff9d; border-left-color: #00ff9d; }
 
         .sidebar-footer {
-            margin-top: auto; border-top: 1px solid rgba(96,165,250,0.1);
+            margin-top: auto; border-top: 1px solid rgba(125,211,252,0.12);
             padding-top: 16px; text-align: center; flex-shrink: 0;
             animation: brandFadeIn 0.9s ease forwards;
         }
@@ -626,25 +633,49 @@ font-weight: 700; font-weight: 600; color: #1a3a5c; font-size: 13px; }
         /* ── Mobile (≤700px) ── */
         @media (max-width: 700px) {
             body { flex-direction: column; height: 100dvh; overflow: hidden; }
-            .sidebar { width: 100%; min-width: unset; height: auto; flex-direction: column; padding: 0; border-right: none; border-bottom: 1px solid var(--sb-border); overflow: visible !important; z-index: 200; flex-shrink: 0; position: sticky; top: 0; }
+            .sidebar {
+                width: 100%; min-width: unset; height: auto; flex-direction: column;
+                padding: env(safe-area-inset-top,0) 0 0; border-right: none;
+                border-bottom: 1px solid var(--sb-border);
+                box-shadow: 0 6px 24px rgba(15,10,40,0.35), inset -1px 0 0 transparent;
+                backdrop-filter: blur(10px);
+                overflow: visible !important; z-index: 200; flex-shrink: 0; position: sticky; top: 0;
+            }
             .sidebar::before, .sidebar::after { display: none; }
             .sidebar-brand { display: none; }
             .sidebar-footer { display: none; }
             .nav-section-label { display: none; }
-            .nav-group { flex-direction: row; overflow: visible; padding: 6px 6px 0; gap: 3px; flex-wrap: nowrap; position: static; }
-            .nav-btn { flex: 1; flex-direction: column; align-items: center; justify-content: center; padding: 7px 4px 6px; gap: 3px; flex-shrink: 1; border-radius: 8px 8px 0 0; min-width: 0; text-align: center; animation: fadeUp 0.4s ease forwards; transform: none; }
+            .nav-group {
+                flex-direction: row; overflow-x: auto; overflow-y: visible;
+                padding: 8px 8px; gap: 4px; flex-wrap: nowrap; position: static;
+                scrollbar-width: none; -ms-overflow-style: none;
+            }
+            .nav-group::-webkit-scrollbar { display: none; }
+            .nav-btn {
+                flex: 1 1 0; min-width: 62px; flex-direction: column; align-items: center;
+                justify-content: center; padding: 8px 4px 7px; gap: 4px;
+                border-radius: 12px; text-align: center;
+                animation: fadeUp 0.4s ease forwards; transform: none;
+            }
             .nav-btn:hover { transform: none; }
-            .nav-icon-wrap { width: 24px; height: 24px; font-size: 0.8em; border-radius: 7px; }
+            .nav-btn:active { transform: scale(0.95); }
+            .nav-btn.active { background: var(--sb-active-bg); box-shadow: 0 2px 10px rgba(125,211,252,0.15); }
+            .nav-icon-wrap { width: 26px; height: 26px; font-size: 0.82em; border-radius: 8px; }
             .nav-text { display: flex; flex-direction: column; align-items: center; }
-            .nav-text .tab-name { font-size: 0.5em; letter-spacing: 0.3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+            .nav-text .tab-name { font-size: clamp(0.46em,2.6vw,0.56em); letter-spacing: 0.3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
             .nav-text .tab-desc { display: none; }
-            .nav-btn-glow { width: 100%; height: 3px; left: 0; bottom: 0; top: auto; border-radius: 2px 2px 0 0; }
-            .nav-group-wrapper { flex: 1; min-width: 0; }
-            .nav-group-header { flex: 1; flex-direction: column; align-items: center; justify-content: center; padding: 7px 4px 6px; gap: 3px; border-radius: 8px 8px 0 0; min-width: 0; text-align: center; opacity: 1; transform: none; animation: none; }
+            .nav-btn-glow { width: 60%; height: 3px; left: 20%; bottom: 1px; top: auto; border-radius: 3px; }
+            .nav-group-wrapper { flex: 1 1 0; min-width: 62px; }
+            .nav-group-header {
+                flex: 1; flex-direction: column; align-items: center; justify-content: center;
+                padding: 8px 4px 7px; gap: 4px; border-radius: 12px; min-width: 0; text-align: center;
+                opacity: 1; transform: none; animation: none;
+            }
             .nav-group-header:hover { transform: none; }
-            .nav-group-header.open { border-radius: 8px 8px 0 0; }
-            .nav-icon-wrap.nav-group-icon { width: 24px; height: 24px; font-size: 0.8em; border-radius: 7px; }
-            .nav-group-header .tab-name { font-family: 'Orbitron', monospace; font-size: 0.5em; letter-spacing: 0.3px; white-space: nowrap; color: rgba(219,234,254,0.95); }
+            .nav-group-header:active { transform: scale(0.95); }
+            .nav-group-header.open { border-radius: 12px; background: var(--sb-active-bg); }
+            .nav-icon-wrap.nav-group-icon { width: 26px; height: 26px; font-size: 0.82em; border-radius: 8px; }
+            .nav-group-header .tab-name { font-family: 'Orbitron', monospace; font-size: clamp(0.46em,2.6vw,0.56em); letter-spacing: 0.3px; white-space: nowrap; color: #7dd3fc; }
             .nav-group-arrow { display: none; }
             /* --- Mobile: child buttons row (ONU ADD / LINE PROFILE / OLT DOCS) --- */
             /* Sits BELOW the sidebar sticky bar, overlays main content — tabs stay visible */
@@ -653,26 +684,27 @@ font-weight: 700; font-weight: 600; color: #1a3a5c; font-size: 13px; }
                 top: var(--mobile-nav-height, 68px); /* will be set by JS */
                 left: 0; right: 0;
                 width: 100%;
-                background: linear-gradient(180deg, #071e3d 0%, #0a1628 100%);
+                background: linear-gradient(180deg, #12183f 0%, #0c0e28 100%);
                 border: 1px solid var(--sb-border);
-                border-top: 2px solid rgba(96,165,250,0.35);
-                padding: 6px 8px;
+                border-top: 2px solid rgba(125,211,252,0.4);
+                padding: 8px 10px calc(8px + env(safe-area-inset-bottom,0));
                 z-index: 150; /* below sidebar (200) but above main content */
                 flex-direction: row !important;
                 flex-wrap: nowrap !important;
                 justify-content: space-evenly;
                 align-items: center;
-                gap: 4px;
+                gap: 6px;
                 box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-                border-radius: 0;
+                border-radius: 0 0 14px 14px;
                 margin-bottom: 0;
                 box-sizing: border-box;
             }
-.nav-child-btn { flex: 1 1 0; flex-direction: column !important; align-items: center !important; justify-content: center; padding: 8px 2px; border-radius: 8px; min-width: 0; max-width: 33%; }
-.nav-child-name { font-size: 0.5em !important; letter-spacing: 0.3px; white-space: nowrap; text-align: center; display: block; }
-.nav-child-icon { width: 22px; height: 22px; margin-bottom: 2px; }
-            .nav-child-btn { flex: 0 0 auto; flex-direction: column; align-items: center; padding: 6px 10px; border-radius: 8px; }
-            .nav-child-icon { width: 22px; height: 22px; }
+.nav-child-btn { flex: 1 1 0; flex-direction: column !important; align-items: center !important; justify-content: center; padding: 8px 2px; border-radius: 10px; min-width: 0; max-width: 33%; }
+.nav-child-name { font-size: clamp(0.46em,2.6vw,0.56em) !important; letter-spacing: 0.3px; white-space: nowrap; text-align: center; display: block; }
+.nav-child-icon { width: 24px; height: 24px; margin-bottom: 3px; border-radius: 7px; }
+            .nav-child-btn { flex: 0 0 auto; flex-direction: column; align-items: center; padding: 7px 10px; border-radius: 10px; }
+            .nav-child-btn:active { transform: scale(0.95); }
+            .nav-child-icon { width: 24px; height: 24px; }
             .nav-child-name { font-size: 0.55em; letter-spacing: 0.5px; white-space: nowrap; }
 
             /* --- Mobile: docs sub-nav — slide-from-right drawer with backdrop --- */
@@ -691,9 +723,9 @@ font-weight: 700; font-weight: 600; color: #1a3a5c; font-size: 13px; }
                 top: 0; bottom: 0;
                 right: -100%;
                 width: min(82vw, 300px);
-                background: linear-gradient(180deg, #071e3d 0%, #0a1628 100%);
-                border-left: 1px solid rgba(96,165,250,0.25);
-                padding: 0;
+                background: linear-gradient(180deg, #12183f 0%, #0c0e28 100%);
+                border-left: 1px solid rgba(167,139,250,0.28);
+                padding: env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);
                 z-index: 510;
                 max-height: 100dvh;
                 overflow-y: auto;
@@ -713,7 +745,7 @@ font-weight: 700; font-weight: 600; color: #1a3a5c; font-size: 13px; }
                 align-items: center;
                 justify-content: space-between;
                 padding: 14px 14px 10px;
-                border-bottom: 1px solid rgba(96,165,250,0.2);
+                border-bottom: 1px solid rgba(167,139,250,0.22);
                 flex-shrink: 0;
             }
             .docs-subnav-close-btn span {
@@ -721,14 +753,14 @@ font-weight: 700; font-weight: 600; color: #1a3a5c; font-size: 13px; }
                 font-size: 0.62em;
                 font-weight: 700;
                 letter-spacing: 2px;
-                color: rgba(96,165,250,0.8);
+                color: rgba(125,211,252,0.85);
                 text-transform: uppercase;
             }
             .docs-subnav-close-btn button {
-                background: rgba(96,165,250,0.15);
-                border: 1px solid rgba(96,165,250,0.3);
+                background: rgba(125,211,252,0.15);
+                border: 1px solid rgba(125,211,252,0.32);
                 border-radius: 8px;
-                color: #60a5fa;
+                color: #7dd3fc;
                 width: 30px; height: 30px;
                 display: flex; align-items: center; justify-content: center;
                 cursor: pointer;
@@ -736,16 +768,16 @@ font-weight: 700; font-weight: 600; color: #1a3a5c; font-size: 13px; }
                 line-height: 1;
                 transition: background 0.18s;
             }
-            .docs-subnav-close-btn button:active { background: rgba(96,165,250,0.35); }
+            .docs-subnav-close-btn button:active { background: rgba(125,211,252,0.35); }
             .docs-subnav-inner { padding: 8px 10px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
             .docs-subnav-group { flex: 0 0 auto; width: 100%; }
-            .docs-subnav-header { font-size: 0.78em; padding: 9px 12px; white-space: normal; }
+            .docs-subnav-header { font-size: 0.82em; padding: 11px 12px; white-space: normal; }
             .docs-subnav-items { min-width: unset; width: 100%; }
             .docs-sub-group { width: 100%; }
-            .docs-sub-group-header { font-size: 0.78em; padding: 7px 10px; white-space: normal; }
-            .docs-sub-group-items { width: 100%; }
-            .docs-sub-btn { font-size: 0.78em !important; padding: 7px 14px !important; white-space: normal; }
-            .docs-sub-btn-leaf { font-size: 0.75em !important; padding: 6px 14px !important; }
+            .docs-sub-group-header { font-size: 0.8em; padding: 9px 10px; white-space: normal; }
+            .docs-sub-group-items { width: 100%; flex-direction: row; flex-wrap: wrap; gap: 6px; padding-left: 12px; }
+            .docs-sub-btn { font-size: 0.85em !important; padding: 10px 14px !important; white-space: normal; }
+            .docs-sub-btn-leaf { font-size: 0.66em !important; letter-spacing: 1px !important; padding: 8px 12px !important; flex: 1 1 0; min-width: 0; text-align: center; white-space: nowrap; border: 1px solid rgba(0,212,255,0.2); border-radius: 8px; border-left: 1px solid rgba(0,212,255,0.2) !important; }
             .main-content { flex: 1; overflow-y: auto; padding: 10px; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
             body.docs-mode .main-content { padding: 0; overflow: hidden; }
             body.docs-mode .docs-content-scroll { padding: 12px; }
@@ -862,24 +894,24 @@ font-weight: 700; font-weight: 600; color: #1a3a5c; font-size: 13px; }
                             </div>
                             <div class="docs-subnav-items">
                                 <div class="docs-sub-group">
-                                    <div class="docs-sub-group-header" onclick="toggleSubGroup(this)"><span>CDATA GPON 16</span><span class="sub-arrow2">▶</span></div>
+                                    <div class="docs-sub-group-header"><span>CDATA GPON 16</span></div>
                                     <div class="docs-sub-group-items">
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_cdata_troubleshoot', this); closeDocsSubnav();"> -Troubleshoot</button>
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_cdata_installation', this); closeDocsSubnav();"> -Installation</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_cdata_troubleshoot', this); closeDocsSubnav();">Troubleshoot</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_cdata_installation', this); closeDocsSubnav();">Installation</button>
                                     </div>
                                 </div>
                                 <div class="docs-sub-group">
-                                    <div class="docs-sub-group-header" onclick="toggleSubGroup(this)"><span>VSOL / ATOP</span><span class="sub-arrow2">▶</span></div>
+                                    <div class="docs-sub-group-header"><span>VSOL / ATOP</span></div>
                                     <div class="docs-sub-group-items">
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_vsol_troubleshoot', this); closeDocsSubnav();"> -Troubleshoot</button>
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_vsol_installation', this); closeDocsSubnav();"> -Installation</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_vsol_troubleshoot', this); closeDocsSubnav();">Troubleshoot</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_vsol_installation', this); closeDocsSubnav();">Installation</button>
                                     </div>
                                 </div>
                                 <div class="docs-sub-group">
-                                    <div class="docs-sub-group-header" onclick="toggleSubGroup(this)"><span>CDATA GPON 8</span><span class="sub-arrow2">▶</span></div>
+                                    <div class="docs-sub-group-header"><span>CDATA GPON 8</span></div>
                                     <div class="docs-sub-group-items">
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_gpon8_troubleshoot', this); closeDocsSubnav();"> -Troubleshoot</button>
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_gpon8_installation', this); closeDocsSubnav();"> -Installation</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_gpon8_troubleshoot', this); closeDocsSubnav();">Troubleshoot</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_gpon8_installation', this); closeDocsSubnav();">Installation</button>
                                     </div>
                                 </div>
                             </div>
@@ -890,24 +922,24 @@ font-weight: 700; font-weight: 600; color: #1a3a5c; font-size: 13px; }
                             </div>
                             <div class="docs-subnav-items">
                                 <div class="docs-sub-group">
-                                    <div class="docs-sub-group-header" onclick="toggleSubGroup(this)"><span>EPON UTSTAR</span><span class="sub-arrow2">▶</span></div>
+                                    <div class="docs-sub-group-header"><span>EPON UTSTAR</span></div>
                                     <div class="docs-sub-group-items">
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_utstar_troubleshoot', this); closeDocsSubnav();">🔧 Troubleshoot</button>
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_utstar_installation', this); closeDocsSubnav();">⚙️ Installation</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_utstar_troubleshoot', this); closeDocsSubnav();">Troubleshoot</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_utstar_installation', this); closeDocsSubnav();">Installation</button>
                                     </div>
                                 </div>
                                 <div class="docs-sub-group">
-                                    <div class="docs-sub-group-header" onclick="toggleSubGroup(this)"><span>EPON PHYHOME</span><span class="sub-arrow2">▶</span></div>
+                                    <div class="docs-sub-group-header"><span>EPON PHYHOME</span></div>
                                     <div class="docs-sub-group-items">
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_phyhome_troubleshoot', this); closeDocsSubnav();">🔧 Troubleshoot</button>
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_phyhome_installation', this); closeDocsSubnav();">⚙️ Installation</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_phyhome_troubleshoot', this); closeDocsSubnav();">Troubleshoot</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_phyhome_installation', this); closeDocsSubnav();">Installation</button>
                                     </div>
                                 </div>
                                 <div class="docs-sub-group">
-                                    <div class="docs-sub-group-header" onclick="toggleSubGroup(this)"><span>EPON FHNET</span><span class="sub-arrow2">▶</span></div>
+                                    <div class="docs-sub-group-header"><span>EPON FHNET</span></div>
                                     <div class="docs-sub-group-items">
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_fhnet_troubleshoot', this); closeDocsSubnav();">🔧 Troubleshoot</button>
-                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_fhnet_installation', this); closeDocsSubnav();">⚙️ Installation</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_fhnet_troubleshoot', this); closeDocsSubnav();">Troubleshoot</button>
+                                        <button class="docs-sub-btn docs-sub-btn-leaf" onclick="showDocsContent('d_fhnet_installation', this); closeDocsSubnav();">Installation</button>
                                     </div>
                                 </div>
                             </div>
@@ -998,7 +1030,7 @@ font-weight: 700; font-weight: 600; color: #1a3a5c; font-size: 13px; }
 <option value="160">160 / 160 Mbps</option>
 <option value="210">210 / 210 Mbps</option>
 <option value="255">255 / 255 Mbps</option>
-<option value="256">256 / 256 Mbps</option>
+<option value="256" selected>256 / 256 Mbps</option>
                             </select>
                         </div>
                     </div>
@@ -1010,7 +1042,7 @@ font-weight: 700; font-weight: 600; color: #1a3a5c; font-size: 13px; }
                         <div class="field"><input type="text" id="vlan4" placeholder="VLAN 4"></div>
                     </div>
                     <div class="btn-row">
-                        <button class="btn btn-gen" onclick="generateOnuScript()"><span class="material-icons" style="font-size:16px">play_arrow</span> Generate</button>
+                        <button class="btn btn-gen" onclick="generateOnuScript(true)"><span class="material-icons" style="font-size:16px">play_arrow</span> Generate</button>
                         <button class="btn btn-clr" onclick="clearOnuForm()"><span class="material-icons" style="font-size:16px">delete_outline</span> Clear</button>
                     </div>
                 </div>
@@ -1585,6 +1617,7 @@ system\configure# pon on 1 1</code>
         mc.style.display = 'flex';
         mc.style.flexDirection = 'column';
         // On mobile open as drawer, on desktop open inline
+        ensureDocsSubnavPlacement();
         const subnav = document.getElementById('docs-subnav');
         const backdrop = document.getElementById('docs-subnav-backdrop');
         subnav.classList.add('open');
@@ -1750,6 +1783,34 @@ initRadio();
     }
 
     // ════ DOCS FUNCTIONS ════
+    // On mobile, .sidebar has backdrop-filter, which makes it the "containing
+    // block" for position:fixed descendants — this traps the docs-subnav drawer
+    // inside the sidebar's small box instead of letting it cover the full screen.
+    // Fix: move docs-subnav + its backdrop to <body> only while on mobile, and
+    // put them back in their original spot in the sidebar for desktop/tablet
+    // (where they're a normal inline accordion, not position:fixed).
+    let __docsSubnavHome = null, __docsSubnavHomeNext = null;
+    let __docsBackdropHome = null, __docsBackdropHomeNext = null;
+    function ensureDocsSubnavPlacement() {
+        const subnav = document.getElementById('docs-subnav');
+        const backdrop = document.getElementById('docs-subnav-backdrop');
+        if (!subnav) return;
+        if (__docsSubnavHome === null) {
+            __docsSubnavHome = subnav.parentElement;
+            __docsSubnavHomeNext = subnav.nextSibling;
+            if (backdrop) { __docsBackdropHome = backdrop.parentElement; __docsBackdropHomeNext = backdrop.nextSibling; }
+        }
+        const isMobile = window.innerWidth <= 700;
+        if (isMobile) {
+            if (subnav.parentElement !== document.body) document.body.appendChild(subnav);
+            if (backdrop && backdrop.parentElement !== document.body) document.body.appendChild(backdrop);
+        } else {
+            if (subnav.parentElement === document.body) __docsSubnavHome.insertBefore(subnav, __docsSubnavHomeNext);
+            if (backdrop && backdrop.parentElement === document.body) __docsBackdropHome.insertBefore(backdrop, __docsBackdropHomeNext);
+        }
+    }
+    window.addEventListener('resize', ensureDocsSubnavPlacement);
+
     function toggleSubGroup(header) {
         const items = header.nextElementSibling;
         const isOpen = items.classList.contains('open');
@@ -1797,7 +1858,7 @@ initRadio();
     }
 
     // ════ ONU SCRIPT ════
-    function generateOnuScript() {
+    function generateOnuScript(autoCopy) {
         const oltType     = document.getElementById('olt-type').value;
         const slot        = document.getElementById('slot').value;
         const pon         = document.getElementById('pon').value;
@@ -1869,6 +1930,7 @@ script += `onu ${onuId} eth ${i} upstream-rate-limit cir ${vsol_bw} pir ${vsol_b
             }
         }
         document.getElementById('output-script').innerText = script;
+        if (autoCopy && script.trim()) { copyOnuScript(); }
     }
 
     function clearOnuForm() {
@@ -1877,7 +1939,7 @@ script += `onu ${onuId} eth ${i} upstream-rate-limit cir ${vsol_bw} pir ${vsol_b
         document.getElementById('slot').value = '0';
         document.getElementById('line-profile').value = '5';
         document.getElementById('gem-id').value = '1';
-        document.getElementById('bandwidth').value = '100';
+        document.getElementById('bandwidth').value = '256';
         ['pon','onu-id','onu-mac','vlan1','vlan2','vlan3','vlan4'].forEach(id => document.getElementById(id).value = '');
         document.getElementById('output-script').innerText = '';
     }
@@ -1885,12 +1947,37 @@ script += `onu ${onuId} eth ${i} upstream-rate-limit cir ${vsol_bw} pir ${vsol_b
     function copyOnuScript() {
         const text = document.getElementById('output-script').innerText;
         const btn = document.getElementById('copy-btn');
-        const ct = btn.querySelector('.copy-text');
-        navigator.clipboard.writeText(text).then(() => {
-            btn.classList.add('copied'); ct.textContent = 'Copied!';
+        const ct = btn ? btn.querySelector('.copy-text') : null;
+        const onCopyOk = () => {
+            if (btn) btn.classList.add('copied');
+            if (ct) ct.textContent = 'Copied!';
             showToast('Script copied to clipboard!');
-            setTimeout(() => { btn.classList.remove('copied'); ct.textContent = 'Copy Script'; }, 2000);
-        }).catch(() => showToast('Copy failed', 'error'));
+            setTimeout(() => { if (btn) btn.classList.remove('copied'); if (ct) ct.textContent = 'Copy Script'; }, 2000);
+        };
+        const onCopyFail = () => {
+            // Fallback for insecure/file:// contexts where navigator.clipboard is blocked
+            try {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.left = '-9999px';
+                ta.style.top = '0';
+                document.body.appendChild(ta);
+                ta.focus();
+                ta.select();
+                const ok = document.execCommand('copy');
+                document.body.removeChild(ta);
+                if (ok) { onCopyOk(); } else { showToast('Copy failed', 'error'); }
+            } catch (err) {
+                showToast('Copy failed', 'error');
+            }
+        };
+        if (!text || !text.trim()) { showToast('Nothing to copy — generate first', 'error'); return; }
+        if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+            navigator.clipboard.writeText(text).then(onCopyOk).catch(onCopyFail);
+        } else {
+            onCopyFail();
+        }
     }
 
     // ════ LINE PROFILE ════
@@ -2082,10 +2169,11 @@ script += `onu ${onuId} eth ${i} upstream-rate-limit cir ${vsol_bw} pir ${vsol_b
 
     // ════ INIT ════
     document.addEventListener('DOMContentLoaded', () => {
+    ensureDocsSubnavPlacement();
     renderBtsTable(btsData);
     initBtsSearch();
     document.getElementById('olt-type').value = 'cdata-gpon-16';
-    document.getElementById('bandwidth').value = '100';
+    document.getElementById('bandwidth').value = '256';
     generateOnuScript();
 });
 
